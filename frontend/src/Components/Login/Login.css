@@ -10,3 +10,8 @@
 .login-form {
    text-align: center;
  }
+
+ .login-error {
+     color: red;
+     font-size: small;
+ }
