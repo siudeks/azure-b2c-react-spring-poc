@@ -8,7 +8,7 @@ export default class Dashboard extends Component {
                 Dashboard Page
 
                 <p>
-                    <Link to="/">Go to Login</Link>
+                    <Link to="/">Logout</Link>
                 </p>
             </div>
         )
