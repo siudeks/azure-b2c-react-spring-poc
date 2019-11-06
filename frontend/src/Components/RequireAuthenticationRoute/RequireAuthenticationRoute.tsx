@@ -11,7 +11,6 @@ const  RequireAuthenticationRoute: React.FC<RequireAuthenticationRouteProps> = (
 
     return (
         <Route {...props}>
-            {props.children}
             {props.isAuthenticate ? (props.children) : (<Redirect to={{ pathname: props.redirect }} />)}
         </Route>
     );
