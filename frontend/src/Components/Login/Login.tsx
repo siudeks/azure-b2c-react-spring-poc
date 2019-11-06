@@ -1,57 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Login.css'
-import { useHistory } from "react-router-dom";
-import { History } from 'history';
-import AuthenticationService from '../../Services/Interfaces/AuthenticateService';
-import AuthenticationServiceStub from '../../Services/AuthenticationServiceStub';
+import { Redirect, Route, RouteComponentProps, withRouter } from "react-router-dom";
 
-type LoginProps = {
-    onAuthenticate: Function
+interface  LoginProps extends RouteComponentProps {
+    onAuthenticate: Function,
+    redirect: string,
 }
+
 
 const Login: React.FC<LoginProps> = (props: LoginProps) => {
 
-    // useHistory force us to use function component
-    let history: History = useHistory();
-    let authenticationService: AuthenticationService = new AuthenticationServiceStub();
-
-    const [userName, setUserName] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
-    const [error, setError] = useState<string>('');
-
-    function Authenticate(): void {
-        if (authenticationService.Authenticate(userName, password)) {
-            props.onAuthenticate(true);
-            history.push('/dashbaord');
-            return;
-        }
-        setError('Login fail.');
+    if (props.location.hash) {
+        props.onAuthenticate(props.location.hash.split("=")[1]);//Ugly...
+        return (<Redirect to={{ pathname: props.redirect }} />);
     }
 
+    const url: string = 'https://mastergos.b2clogin.com/mastergos.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_login_poc&client_id=050fb5cc-57e2-424c-9676-8d6062891d9c&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=openid&response_type=id_token&prompt=login';
+    window.location.replace(url);
     return (
-        <div className='login-form'>
-            <div className='login-border'>
-                <h1>Welcome</h1>
-                <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                    e.preventDefault();
-                    Authenticate();
-                }}>
-                    <div>
-                        <input placeholder='Username'
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setUserName(e.target.value) }}
-                            value={userName} />
-                    </div>
-                    <div>
-                        <input placeholder='Password'
-                            type='password'
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setPassword(e.target.value) }}
-                            value={password} />
-                    </div>
-                    <input type='submit' value='Login' />
-                    <div className='login-error'>{error}</div>
-                </form>
-            </div>
-        </div>
+        <div>
+            You will be redirected to the <a href={url}>login page</a>.
+       </div>
     );
 }
 
