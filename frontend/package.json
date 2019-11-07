@@ -16,8 +16,8 @@
     "typescript": "3.6.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start .env.dev.local, .env",
+    "build": "react-scripts build .env.dev.local, .env",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
