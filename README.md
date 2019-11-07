@@ -4,3 +4,6 @@ Simple repo to show identification and authorisation with ReactJS and Azure B2C
 ## How to run
 Frontend: `npm start`
 
+## How to configure
+Frontend: `.env` file
+

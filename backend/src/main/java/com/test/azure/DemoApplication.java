@@ -1,4 +1,4 @@
-package com.test.azure.ad.azureadtest;
+package com.test.azure;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
