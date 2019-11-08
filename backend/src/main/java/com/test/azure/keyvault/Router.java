@@ -13,9 +13,8 @@ public class Router {
 
     @Bean
     public RouterFunction<ServerResponse> routeSecretRequestHandler(SecretRequestHandler handler) {
-        return RouterFunctions.route(
-                RequestPredicates.GET("/vault").and(RequestPredicates.accept(MediaType.TEXT_PLAIN)),
-                handler::hello);
+        return RouterFunctions.route(RequestPredicates.GET("/my-secret")
+                .and(RequestPredicates.accept(MediaType.TEXT_PLAIN)), handler::hello);
     }
 
 }
