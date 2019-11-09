@@ -1,6 +1,5 @@
 import React from 'react'
-import './Login.css'
-import { Redirect, Route, RouteComponentProps, withRouter } from "react-router-dom";
+import { Redirect, RouteComponentProps } from "react-router-dom";
 
 interface LoginProps extends RouteComponentProps {
     onAuthenticate: Function,
