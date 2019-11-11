@@ -1,45 +1,62 @@
-import React from 'react'
-import { Redirect, RouteComponentProps } from "react-router-dom";
+import React, { Component } from 'react';
+import * as Msal from 'msal';
 
-interface LoginProps extends RouteComponentProps {
-    onAuthenticate: Function,
-    redirect: string,
-}
+export default class Login extends Component {
 
-const Login: React.FC<LoginProps> = (props: LoginProps) => {
+    private msalInstance: Msal.UserAgentApplication;
+    private msalAuthenticationParameters: Msal.AuthenticationParameters;
+    //private authResponse?: Msal.AuthResponse;
+    private autheError?: Msal.AuthError;
 
-    const policy:       string = process.env.REACT_APP_B2C_POLICY;
-    const clientId:     string = process.env.REACT_APP_B2C_CLIENTID;
-    const scope:        string = process.env.REACT_APP_B2C_SCOPE;
-    const responseType: string = process.env.REACT_APP_B2C_RESPONSE_TYPE;
-    const tenantName:   string = process.env.REACT_APP_B2C_TENANT_NAME;
-    const host:         string = process.env.REACT_APP_B2C_REDIRECT_HOST;
-    const port:         string = process.env.REACT_APP_B2C_REDIRECT_PORT;
+    constructor() {
+        super({});
 
-    const url: string = `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/oauth2/v2.0/authorize?` +
-        `p=${policy}&` +
-        `client_id=${clientId}&` +
-        `nonce=defaultNonce&` +
-        `redirect_uri=http%3A%2F%2F${host}%3A${port}%2F&` +
-        `scope=${scope}&` +
-        `response_type=${responseType}&` +
-        `prompt=login`;
+        const policy:       string = process.env.REACT_APP_B2C_POLICY;
+        const clientId:     string = process.env.REACT_APP_B2C_CLIENTID;
+        const scope:        string = process.env.REACT_APP_B2C_SCOPE;
+        const tenantName:   string = process.env.REACT_APP_B2C_TENANT_NAME;
 
+        let msalConfig: Msal.Configuration = {
+            auth: {
+                clientId: clientId,
+                authority: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${policy}`,
+                validateAuthority: false,
+                navigateToLoginRequestUrl: false
+            },
+            cache: {
+                cacheLocation: "localStorage",
+                storeAuthStateInCookie: true
+            }
+        };
 
-    const params: string[] = props.location.hash.split("=");
+        this.msalAuthenticationParameters = { scopes: [scope] };
 
-    if (params.length === 2 && params[0] === `#${responseType}`) {
-        props.onAuthenticate(params[1]);
-        return (<Redirect to={{ pathname: props.redirect }} />);
+        this.msalInstance = new Msal.UserAgentApplication(msalConfig);
+
+        this.msalInstance.handleRedirectCallback((error, response) => {
+            //this.authResponse = response;
+            this.autheError = error;
+        });
     }
 
-    window.location.replace(url);
+    render() {
 
-    return (
-        <div>
-            You will be redirected to the <a href={url}>login page</a>.
-       </div>
-    );
+        if (!this.msalInstance.getAccount()) {
+
+            if (this.autheError) {
+                return(<div>Login error</div>);
+            }
+
+            this.msalInstance.loginRedirect(this.msalAuthenticationParameters);
+            return (
+                <div>
+                    You will be redirected to the login page.
+                </div>
+            );
+        }
+
+        console.log(this.msalInstance.getAccount());
+
+        return this.props.children;
+    }
 }
-
-export default Login;
