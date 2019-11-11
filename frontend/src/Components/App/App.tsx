@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.sass';
 import Login from '../Login/Login';
 import Dashboard from '../Dashboard/Dashboard';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
