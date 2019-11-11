@@ -1,2 +1,9 @@
-.DS_Store
-backend/.factorypath
+.mvn
+
+.factorypath
+.project
+.vscode
+.settings
+.classpath
+
+target/
