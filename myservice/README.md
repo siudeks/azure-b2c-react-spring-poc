@@ -23,4 +23,14 @@ Initially, to create simple server application, I decided to use graphql-spring-
 ```shell
 mvn spring-boot:run
 http://localhost:9001/graphiql
+http://localhost:9001/altair
+http://localhost:9001/voyager
+```
+
+## Check project's healts
+
+```shell
+mvn versions:display-plugin-updates
+mvn versions:display-dependency-updates
+mvn checkstyle:checkstyle
 ```
