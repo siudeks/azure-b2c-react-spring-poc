@@ -1,4 +1,6 @@
 spring:
+  main:
+    banner-mode: off
   application:
     name: graphql-todo-app
   servlet:
@@ -7,6 +9,12 @@ spring:
       location: /tmp
 server:
   port: 9001
+
+logging:
+  level:
+    org.springframework: warn
+    root: OFF
+
 management:
   endpoints:
     web:
