@@ -1,62 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState, PropsWithChildren } from 'react';
 import * as Msal from 'msal';
 
-export default class Login extends Component {
+interface LoginProps {
+    authenticator: Msal.UserAgentApplication
+}
 
-    private msalInstance: Msal.UserAgentApplication;
-    private msalAuthenticationParameters: Msal.AuthenticationParameters;
-    //private authResponse?: Msal.AuthResponse;
-    private autheError?: Msal.AuthError;
+const Login: React.FC<PropsWithChildren<LoginProps>> = ({ authenticator, children }) => {
 
-    constructor() {
-        super({});
+    const [isAuthError, setIsAuthError] = useState(false);
 
-        const policy:       string = process.env.REACT_APP_B2C_POLICY;
-        const clientId:     string = process.env.REACT_APP_B2C_CLIENTID;
-        const scope:        string = process.env.REACT_APP_B2C_SCOPE;
-        const tenantName:   string = process.env.REACT_APP_B2C_TENANT_NAME;
+    let msalAuthenticationParameters = { scopes: [process.env.REACT_APP_B2C_SCOPE] };
 
-        let msalConfig: Msal.Configuration = {
-            auth: {
-                clientId: clientId,
-                authority: `https://${tenantName}.b2clogin.com/${tenantName}.onmicrosoft.com/${policy}`,
-                validateAuthority: false,
-                navigateToLoginRequestUrl: false
-            },
-            cache: {
-                cacheLocation: "localStorage",
-                storeAuthStateInCookie: true
-            }
-        };
+    authenticator.handleRedirectCallback((error, response) => {
+        if(!error) return;
+        setIsAuthError(true);
+        console.log(error);
+    });
 
-        this.msalAuthenticationParameters = { scopes: [scope] };
+    if (!authenticator.getAccount()) {
 
-        this.msalInstance = new Msal.UserAgentApplication(msalConfig);
-
-        this.msalInstance.handleRedirectCallback((error, response) => {
-            //this.authResponse = response;
-            this.autheError = error;
-        });
-    }
-
-    render() {
-
-        if (!this.msalInstance.getAccount()) {
-
-            if (this.autheError) {
-                return(<div>Login error</div>);
-            }
-
-            this.msalInstance.loginRedirect(this.msalAuthenticationParameters);
+        if (isAuthError) {
             return (
                 <div>
-                    You will be redirected to the login page.
+                    Authentication error occurred.
                 </div>
             );
         }
 
-        console.log(this.msalInstance.getAccount());
+        authenticator.loginRedirect(msalAuthenticationParameters);
 
-        return this.props.children;
+        return (
+            <div>
+                You will be redirected to the login page.
+            </div>
+        );
     }
-}
+    return children as React.ReactElement;
+};
+
+export default Login;
