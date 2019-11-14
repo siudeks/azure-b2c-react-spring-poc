@@ -15,6 +15,7 @@ const Login: React.FC<PropsWithChildren<LoginProps>> = ({ authenticator, childre
         if(!error) return;
         setIsAuthError(true);
         console.log(error);
+        console.log(response);
     });
 
     if (!authenticator.getAccount()) {
@@ -35,6 +36,7 @@ const Login: React.FC<PropsWithChildren<LoginProps>> = ({ authenticator, childre
             </div>
         );
     }
+
     return children as React.ReactElement;
 };
 
