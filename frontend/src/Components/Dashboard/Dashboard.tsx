@@ -1,11 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from "@apollo/react-hooks";
 import { gql } from 'apollo-boost';
-
-interface DashboardProps {
-
-}
+import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 
 const query = gql`
   {
@@ -20,19 +16,11 @@ const query = gql`
   }
 `;
 
-const Dashboard: React.FC<DashboardProps> = () => {
-
-    const { loading, error, data } = useQuery(query);
-
-    const displayData = () => {
-        if (loading) return (<p>Loading...</p>);
-        if (error) return (<p>Error: {error.message}</p>);
-        return (<p>{JSON.stringify(data)}</p>);
-    }
+const Dashboard: React.FC = () => {
 
     return (
         <div>
-            {displayData()}
+            <QueryResultDisplayer query={query}/>
             <Link to="/logout">Logout</Link>
         </div>
     );
