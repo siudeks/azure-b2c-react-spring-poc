@@ -27,6 +27,10 @@
     "build": "react-scripts build .env.local, .env",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "apollo": "apollo",
+    "apollo-download-schema": "apollo schema:download --endpoint=http://localhost:9001/graphql graphql-schema.json",
+    "apollo-generate-types": "apollo codegen:generate --localSchemaFile=graphql-schema.json --target=typescript --includes=src/**/*.tsx --tagName=gql --addTypename --globalTypesFile=src/types/graphql-global-types.ts types",
+    "apollo-build": "npm run apollo-download-schema && npm run apollo-generate-types",
     "compile-login-sass": "node-sass --watch azureB2C -o azureB2C"
   },
   "eslintConfig": {
@@ -43,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "apollo": "^2.21.0"
   }
 }

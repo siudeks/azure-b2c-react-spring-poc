@@ -4,7 +4,7 @@ import { gql } from 'apollo-boost';
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 
 const query = gql`
-  {
+  query GetBooks {
     books {
         id
         name
