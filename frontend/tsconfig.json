@@ -21,5 +21,6 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "exclude": ["src/GraphqlTypes/graphql-global-types.ts", "node_modules"]
 }
