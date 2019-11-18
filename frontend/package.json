@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "apollo": "apollo",
-    "apollo-generate-types": "apollo codegen:generate --localSchemaFile=../myservice/src/main/resources/my-first-api.graphqls --target=typescript --includes=src/**/*.tsx,src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/GraphqlTypes/graphql-global-types.ts types",
+    "apollo-generate-types": "apollo codegen:generate --watch --localSchemaFile=../myservice/src/main/resources/my-first-api.graphqls --target=typescript --includes=src/**/*.tsx,src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/GraphqlTypes/graphql-global-types.ts types",
     "compile-login-sass": "node-sass --watch azureB2C -o azureB2C"
   },
   "eslintConfig": {

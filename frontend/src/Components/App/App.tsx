@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
   // Dependencies
   const msalInstance = createAuthenticator();
-  const apolloClient = new ApolloClient({ uri: "http://localhost:9001/graphql" });
+  const apolloClient = new ApolloClient({ uri: process.env.REACT_APP_SERVICE_URL });
 
   const logout: React.FC = () => {
     msalInstance.logout();
