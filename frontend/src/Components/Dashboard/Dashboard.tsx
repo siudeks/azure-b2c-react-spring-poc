@@ -2,20 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GetAllBooks from '../../GlobalQueries/GetAllBooks';
 import { GetAllBooks as Books } from '../../GlobalQueries/types/GetAllBooks';
-import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 
 const Dashboard: React.FC = () => {
 
+    const result = useQuery<Books, Books>(GetAllBooks)
+
     return (
         <div>
-            {/*  ToDo: refactor, code is not very readable and looks hacky :| */}
-            <Query<Books, Books> query={GetAllBooks}>
-                {
-                    //this wrapper seems to be necessary...
-                    (result) => <QueryResultDisplayer {...result} />
-                }
-            </Query>
+            <QueryResultDisplayer {...result} />
             <Link to="/logout">Logout</Link>
         </div>
     );
