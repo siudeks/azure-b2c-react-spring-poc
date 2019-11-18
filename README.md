@@ -13,3 +13,4 @@ Simple repo to show identification and authorisation with ReactJS and Azure B2C
 ## Useful commands:
 **Frontend:**
  - `npm run compile-login-sass` compiles sass files to css files for login page (login page is separte from react project due to using Azure B2C)
+ - `npm run graphql-generate-components` generates grpahql components based on service schema

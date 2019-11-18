@@ -7,7 +7,12 @@ const QueryResultDisplayer: React.FC<QueryResult> = ({ loading, error, data }) =
 
     if (loading) return (<p>Loading...</p>);
 
-    if (error) return (<p>Error: {error.message}</p>);
+    if (error) return (
+        <div>
+            <h1>Error: {error.message}</h1>
+            <p>{error.stack}</p>
+        </div>
+    );
 
     return (<JSONPretty data={data} />);
 }

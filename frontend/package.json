@@ -28,8 +28,7 @@
     "build": "react-scripts build .env.local, .env",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "apollo": "apollo",
-    "apollo-generate-types": "apollo codegen:generate --watch --localSchemaFile=../myservice/src/main/resources/my-first-api.graphqls --target=typescript --includes=src/**/*.tsx,src/**/*.ts --tagName=gql --addTypename --globalTypesFile=src/GraphqlTypes/graphql-global-types.ts types",
+    "graphql-generate-components": "graphql-codegen --config ./graphql-codegen-config.yml",
     "compile-login-sass": "node-sass --watch azureB2C -o azureB2C"
   },
   "eslintConfig": {
@@ -48,6 +47,10 @@
     ]
   },
   "devDependencies": {
-    "apollo": "^2.21.0"
+    "apollo": "^2.21.0",
+    "@graphql-codegen/cli": "^1.8.3",
+    "@graphql-codegen/typescript": "^1.8.3",
+    "@graphql-codegen/typescript-operations": "^1.8.3",
+    "@graphql-codegen/typescript-react-apollo": "^1.8.3"
   }
 }
