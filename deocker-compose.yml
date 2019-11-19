@@ -1,0 +1,18 @@
+#unfinished
+version: '3'
+services:
+  frontend:
+    image: httpd:2.4
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend/build/:/usr/local/apache2/htdocs/
+    links:
+      - "backend:myservice"
+  backend:
+    image: tomcat:8.0
+    ports:
+      - "8080:8080"
+      - "9001:9001"
+    volumes:
+      - ./myservice/<war file should goes here>:/usr/local/tomcat/
