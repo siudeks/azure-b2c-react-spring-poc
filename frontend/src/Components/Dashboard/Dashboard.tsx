@@ -1,14 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import GetAllBooks from '../../GlobalQueries/GetAllBooks';
-import { GetAllBooks as Books } from '../../GlobalQueries/types/GetAllBooks';
-import { useQuery } from '@apollo/react-hooks';
+import { useBooksQuery } from '../.generated/components'
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 
 const Dashboard: React.FC = () => {
 
-    const result = useQuery<Books, Books>(GetAllBooks)
-
+    const result = useBooksQuery();
+    
     return (
         <div>
             <QueryResultDisplayer {...result} />
