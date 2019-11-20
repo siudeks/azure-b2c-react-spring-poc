@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useBooksQuery } from '../.generated/components'
+import { useAllBooksQuery } from '../.generated/components'
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 
 const Dashboard: React.FC = () => {
 
-    const result = useBooksQuery();
+    const result = useAllBooksQuery();
     
     return (
         <div>

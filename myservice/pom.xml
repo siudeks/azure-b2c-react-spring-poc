@@ -1,154 +1,149 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.1.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>gft</groupId>
-	<artifactId>myservice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
-
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-
-	<dependencies>
-
-		<!-- section start https://github.com/graphql-java-kickstart/graphql-spring-boot -->
-		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>5.10.0</version>
-		</dependency>
-
-		<!-- to embed Altair tool -->
-		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>altair-spring-boot-starter</artifactId>
-			<version>5.10.0</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- to embed GraphiQL tool -->
-		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>graphiql-spring-boot-starter</artifactId>
-			<version>5.10.0</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- to embed Voyager tool -->
-		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>voyager-spring-boot-starter</artifactId>
-			<version>5.10.0</version>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- testing facilities -->
-		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>graphql-spring-boot-starter-test</artifactId>
-			<version>5.10.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- section start https://github.com/graphql-java-kickstart/graphql-spring-boot -->
-
-		<dependency>
-			<groupId>io.vavr</groupId>
-			<artifactId>vavr</artifactId>
-			<version>1.0.0-alpha-3</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-spring-boot-starter</artifactId>
-			<version>5.0.2</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-	</dependencies>
-
-	<build>
-		<plugins>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-enforcer-plugin</artifactId>
-				<version>3.0.0-M2</version>
-				<executions>
-					<execution>
-						<id>enforce-versions</id>
-						<goals>
-							<goal>enforce</goal>
-						</goals>
-						<configuration>
-							<rules>
-								<bannedPlugins>
-									<!-- will only display a warning but does not fail the build. -->
-									<level>WARN</level>
-									<excludes>
-										<exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
-									</excludes>
-									<message>Please consider using the maven-invoker-plugin (http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
-								</bannedPlugins>
-								<requireMavenVersion>
-									<version>3.6</version>
-								</requireMavenVersion>
-								<requireJavaVersion>
-									<version>1.8</version>
-								</requireJavaVersion>
-							</rules>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-			</plugin>
-
-		</plugins>
-	</build>
-
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.1.RELEASE</version>
+        <relativePath />
+        <!-- lookup parent from repository -->
+    </parent>
+    <groupId>gft</groupId>
+    <artifactId>myservice</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>demo</name>
+    <description>Demo project for Spring Boot</description>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+    <dependencies>
+        <!-- Random generators for mock data -->
+        <dependency>
+            <groupId>net.moznion</groupId>
+            <artifactId>random-string</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.ajbrown</groupId>
+            <artifactId>name-machine</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <!-- section start https://github.com/graphql-java-kickstart/graphql-spring-boot -->
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>5.10.0</version>
+        </dependency>
+        <!-- to embed Altair tool -->
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>altair-spring-boot-starter</artifactId>
+            <version>5.10.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- to embed GraphiQL tool -->
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphiql-spring-boot-starter</artifactId>
+            <version>5.10.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- to embed Voyager tool -->
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>voyager-spring-boot-starter</artifactId>
+            <version>5.10.0</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- testing facilities -->
+        <dependency>
+            <groupId>com.graphql-java-kickstart</groupId>
+            <artifactId>graphql-spring-boot-starter-test</artifactId>
+            <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- section start https://github.com/graphql-java-kickstart/graphql-spring-boot -->
+        <dependency>
+            <groupId>io.vavr</groupId>
+            <artifactId>vavr</artifactId>
+            <version>1.0.0-alpha-3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.graphql-java</groupId>
+            <artifactId>graphql-spring-boot-starter</artifactId>
+            <version>5.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedPlugins>
+                                    <!-- will only display a warning but does not fail the build. -->
+                                    <level>WARN</level>
+                                    <excludes>
+                                        <exclude>org.apache.maven.plugins:maven-verifier-plugin</exclude>
+                                    </excludes>
+                                    <message>Please consider using the maven-invoker-plugin (http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
+                                </bannedPlugins>
+                                <requireMavenVersion>
+                                    <version>3.6</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
