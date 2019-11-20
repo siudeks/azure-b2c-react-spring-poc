@@ -1,9 +1,12 @@
-import React from 'react';
-import JSONPretty from 'react-json-pretty';
-import './monikai.css';
-import { QueryResult } from 'react-apollo';
+import React, { PropsWithChildren } from 'react';
+import { ApolloError } from 'apollo-boost';
 
-const QueryResultDisplayer: React.FC<QueryResult> = ({ loading, error, data }) => {
+interface QueryResultDisplayerProps {
+    loading: boolean,
+    error: ApolloError | undefined
+}
+
+const QueryResultDisplayer: React.FC<PropsWithChildren<QueryResultDisplayerProps>> = ({ loading, error, children} ) => {
 
     if (loading) return (<p>Loading...</p>);
 
@@ -14,7 +17,7 @@ const QueryResultDisplayer: React.FC<QueryResult> = ({ loading, error, data }) =
         </div>
     );
 
-    return (<JSONPretty data={data} />);
+    return children as React.ReactElement;
 }
 
 export default QueryResultDisplayer

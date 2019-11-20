@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAllBooksQuery } from '../.generated/components'
+import { useAllBooksQuery } from '../.generated/components';
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
+import BooksList from './BooksList';
 
 const Dashboard: React.FC = () => {
 
-    const result = useAllBooksQuery();
-    
+    const { data, loading, error } = useAllBooksQuery();
+
     return (
         <div>
-            <QueryResultDisplayer {...result} />
+            <QueryResultDisplayer loading={loading} error={error}>
+                {data ? (<BooksList {...data} />) : (<p>No data</p>)}
+            </QueryResultDisplayer>
             <Link to="/logout">Logout</Link>
         </div>
     );
