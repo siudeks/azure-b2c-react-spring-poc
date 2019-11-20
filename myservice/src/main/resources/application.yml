@@ -13,7 +13,7 @@ server:
 logging:
   level:
     org.springframework: warn
-    root: OFF
+    root: error
 
 management:
   endpoints:

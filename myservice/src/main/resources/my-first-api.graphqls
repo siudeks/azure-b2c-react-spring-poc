@@ -5,10 +5,12 @@ type Query {
 type Book {
     id: Int!
     name: String!
+    ISBN: String!
     author: Author!
 }
 
 type Author {
     id: Int!
     name: String!
+    surname: String!
 }
