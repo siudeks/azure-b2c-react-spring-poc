@@ -12,6 +12,9 @@ import lombok.var;
 import net.moznion.random.string.RandomStringGenerator;
 import org.ajbrown.namemachine.NameGenerator;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
+import java.nio.file.Files;
+import java.io.File;
 
 import gft.gql.models.Author;
 import gft.gql.models.Book;
@@ -26,6 +29,8 @@ class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
     private final Set<String> RECIPIENTS;
     private final Set<String> PARTS;
     private final Set<String> FORMATS;
+
+    private String description;
 
     private NameGenerator nameGenerator;
     private RandomStringGenerator randomStringGenerator;
@@ -45,6 +50,7 @@ class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
 
         nameGenerator = new NameGenerator();
         randomStringGenerator = new RandomStringGenerator();
+        description = ReadDescription();
         GenerateMockData();
     }
 
@@ -74,7 +80,8 @@ class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
 
     private Book GenerateBookMockData(int bookId) {
         return new Book(bookId, generateRandomBookName(),
-                String.format("ISBN %s", randomStringGenerator.generateByRegex(BOOK_ISBN_PATTERN)), bookId);
+                String.format("ISBN %s", randomStringGenerator.generateByRegex(BOOK_ISBN_PATTERN)), description,
+                bookId);
     }
 
     private Author GenerateAuthorMockData(int bookId) {
@@ -86,6 +93,15 @@ class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
     private String generateRandomBookName() {
         return String.format(getRandomSetElement(FORMATS), getRandomSetElement(LANGUAGES_OR_FRAMEWORKS),
                 getRandomSetElement(RECIPIENTS), getRandomSetElement(PARTS));
+    }
+
+    private String ReadDescription() {
+        try {
+            File file = ResourceUtils.getFile("classpath:lorem-ipsum.txt");
+            return new String(Files.readAllBytes(file.toPath()));
+        } catch (Exception e) {
+            return "Error occurred - no descrption";
+        }
     }
 
     // From stackoverflow <3

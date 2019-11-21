@@ -2,7 +2,6 @@ query AllBooks {
     books {
       id
       name
-      ISBN
       author {
         id
         name
