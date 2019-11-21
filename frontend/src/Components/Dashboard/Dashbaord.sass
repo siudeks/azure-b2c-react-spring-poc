@@ -1,0 +1,35 @@
+@import "../../GlobalStyles/variables"
+
+@mixin position($value)
+    -webkit-position: $value
+    -moz-position: $value
+    -ms-position: $value
+    -o-position: $value
+    position: $value
+
+.component-container
+    display: flex
+    flex-direction: row
+    flex-wrap: no-wrap
+    @media screen and ($mobile)
+        flex-wrap: wrap
+
+.list-container
+    min-width: 35vw
+    max-width: 35vw
+    margin-right: 2px
+    @include position(sticky)
+    align-self: flex-start
+    top: 0
+    @media screen and ($mobile)
+        min-width: 100%
+        max-width: 100%
+        @include position(static)
+
+.scrollable-container
+    padding-right: 3px
+    overflow-y: auto
+    height: 80vh
+    @media screen and ($mobile)
+        height: 50vh
+        padding-right: 0

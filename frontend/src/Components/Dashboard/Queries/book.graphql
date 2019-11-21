@@ -1,8 +1,9 @@
-query GetBook {
-    book(id: 5) {
+query GetBook($id: Int!) {
+    book(id: $id) {
       id
       name
       ISBN
+      description
       author {
         id
         name
