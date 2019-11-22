@@ -1,8 +1,8 @@
 import React, { useState, PropsWithChildren } from 'react';
-import * as Msal from 'msal';
+import Authenticator from '../../Helpers/Authenticator';
 
-interface LoginProps {
-    authenticator: Msal.UserAgentApplication
+export interface LoginProps {
+    authenticator: Authenticator
 }
 
 const Login: React.FC<PropsWithChildren<LoginProps>> = ({ authenticator, children }) => {
