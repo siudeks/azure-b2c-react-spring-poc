@@ -1,5 +1,6 @@
 import React from 'react';
-import Login from '../Login/Login';
+import Login from '../Authentication/Login';
+import Logout from '../Authentication/Logout';
 import Dashboard from '../Dashboard/Dashboard';
 import createAuthenticator from '../../Helpers/AuthenticatorFactory'
 import createApolloClient from '../../Helpers/ApolloClientFactory'
@@ -13,11 +14,6 @@ const App: React.FC = () => {
   const msalInstance = createAuthenticator();
   const apolloClient = createApolloClient();
 
-  const logout: React.FC = () => {
-    msalInstance.logout();
-    return (<div>If you're not redirected to login page please close web browser tab.</div>);
-  };
-
   return (
     <Login authenticator={msalInstance}>
       <ApolloProvider client={apolloClient}>
@@ -27,7 +23,7 @@ const App: React.FC = () => {
               <Dashboard />
             </Route>
             <Route exact path="/logout">
-              {logout}
+              <Logout authenticator={msalInstance}/>
             </Route>
           </Switch>
         </BrowserRouter>
