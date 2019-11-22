@@ -12,7 +12,7 @@ const BooksList: React.FC<BooksListProps> = ({ books, onBookSelected }) => {
     if (books) {
         return (
             <div>
-                <ul>
+                <ul className="books-list-container">
                     {
                         books.map(b => (<li className="book-item" key={b.id} onClick={(e) => { onBookSelected(b) }}>{b.name} by {b.author.name} {b.author.surname}</li>))
                     }
