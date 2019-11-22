@@ -13,6 +13,9 @@ const Dashboard: React.FC = () => {
     const [selectedBook, setSelectedBook] = useState<Book>()
     let books: Book[] = (data && data.books && data.books.map(b => b as Book)) || [];
 
+    const [searchPharse, setSearchPharse] = useState<string>("");
+    const filterBooks = (book: Book) => !searchPharse || book.name.includes(searchPharse) || book.author.name.includes(searchPharse) || book.author.surname.includes(searchPharse);
+
     return (
         <div>
             <div>
@@ -22,8 +25,9 @@ const Dashboard: React.FC = () => {
                 <div className="list-container">
                     <QueryResultDisplayer loading={loading} error={error}>
                         <h3> Books: </h3>
+                        <input type="text" className="searh-input" maxLength={255} value={searchPharse} onChange={(e) => setSearchPharse(e.target.value)} placeholder="Search for book" />
                         <div className="scrollable-container">
-                            <BooksList books={books} onBookSelected={setSelectedBook} />
+                            <BooksList books={books.filter(filterBooks)} onBookSelected={setSelectedBook} />
                         </div>
                     </QueryResultDisplayer>
                 </div>
