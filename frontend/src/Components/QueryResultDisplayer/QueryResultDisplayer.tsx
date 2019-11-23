@@ -1,7 +1,7 @@
 import React, { PropsWithChildren } from 'react';
 import { ApolloError } from 'apollo-boost';
 
-interface QueryResultDisplayerProps {
+export interface QueryResultDisplayerProps {
     loading: boolean,
     error: ApolloError | undefined
 }
