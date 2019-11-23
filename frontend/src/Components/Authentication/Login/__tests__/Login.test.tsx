@@ -1,4 +1,4 @@
-import Authenticator from '../../../Helpers/Authenticator';
+import Authenticator from '../../../../Helpers/Authenticator';
 import { authResponseCallback } from "msal/lib-commonjs/UserAgentApplication";
 import Login, { LoginProps } from '../Login'
 import { shallow } from 'enzyme';

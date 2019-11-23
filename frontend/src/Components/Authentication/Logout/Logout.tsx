@@ -1,5 +1,5 @@
 import React from 'react';
-import Authenticator from '../../Helpers/Authenticator';
+import Authenticator from '../../../Helpers/Authenticator';
 
 export interface LogoutProps {
   authenticator: Authenticator
