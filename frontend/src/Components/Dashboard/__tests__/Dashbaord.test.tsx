@@ -62,7 +62,7 @@ describe('Dashboard component', () => {
             books: [
                 {
                     id: 1,
-                    name: 'My live...',
+                    name: 'My life...',
                     author:
                     {
                         id: 1, name: 'Jaroslaw', surname: 'Goslawski'
@@ -99,7 +99,7 @@ describe('Dashboard component', () => {
             books: [
                 {
                     id: 1,
-                    name: 'My live...',
+                    name: 'My life...',
                     author:
                     {
                         id: 1, name: 'Jaroslaw', surname: 'Kowalski'
