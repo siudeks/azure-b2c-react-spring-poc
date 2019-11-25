@@ -23,13 +23,13 @@ const Dashboard: React.FC = () => {
             </div>
             <div className="component-container">
                 <div className="list-container">
-                    <QueryResultDisplayer loading={loading} error={error}>
-                        <h3> Books: </h3>
-                        <input type="text" className="searh-input" maxLength={255} value={searchPharse} onChange={(e) => setSearchPharse(e.target.value)} placeholder="Search for book" />
-                        <div className="scrollable-container">
+                    <h3> Books: </h3>
+                    <input type="text" className="searh-input" maxLength={255} value={searchPharse} onChange={(e) => setSearchPharse(e.target.value)} placeholder="Search for book" />
+                    <div className="scrollable-container">
+                        <QueryResultDisplayer loading={loading} error={error}>
                             <BooksList books={books.filter(filterBooks)} onBookSelected={setSelectedBook} />
-                        </div>
-                    </QueryResultDisplayer>
+                        </QueryResultDisplayer>
+                    </div>
                 </div>
                 {selectedBook ? (<BookDetails {...selectedBook} />) : <div />}
             </div>
