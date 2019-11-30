@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAllBooksQuery, Book } from '../.generated/components';
+import { useAllBooksQuery, useOnNewBookSubscription, Book, OnNewBookSubscription, OnNewBookSubscriptionResult } from '../.generated/components';
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 import BooksList from './BooksList/BooksList';
 import BookDetails from './BookDetails/BookDetails';
 import './Dashbaord.sass';
+import { QueryResult, SubscriptionResult, OnSubscriptionDataOptions } from '@apollo/react-common';
 
 
 const Dashboard: React.FC = () => {
 
     const { data, loading, error } = useAllBooksQuery();
-    const [selectedBook, setSelectedBook] = useState<Book>()
+    const [selectedBook, setSelectedBook] = useState<Book>();
+
+    const subscription = useOnNewBookSubscription({ onSubscriptionData: onNewBook });
+
+    function onNewBook({ subscriptionData }: OnSubscriptionDataOptions<OnNewBookSubscription>) {
+        console.log(subscriptionData);
+        /*Do something with new book */
+    };
+
     let books: Book[] = (data && data.books && data.books.map(b => b as Book)) || [];
 
     const [searchPharse, setSearchPharse] = useState<string>("");

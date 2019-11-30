@@ -1,0 +1,11 @@
+subscription OnNewBook {
+  newBook {
+      id
+      name
+      author {
+        id
+        name
+        surname
+      }
+    }
+}
