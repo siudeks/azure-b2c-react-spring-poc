@@ -1,8 +1,3 @@
-schema {
-    query: Query
-    subscription: Subscription
-}
-
 type Query {
     books: [Book!]
     book(id: Int): Book
@@ -10,7 +5,7 @@ type Query {
 
 type Subscription {
     newBook: Book!
-    deletedBook: Book!
+    deletedBook: Int!
 }
 
 type Book {

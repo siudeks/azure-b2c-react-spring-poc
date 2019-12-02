@@ -1,5 +1,3 @@
 subscription OnDeletedBook {
-    deletedBook {
-        id
-    }
+    deletedBook
 }

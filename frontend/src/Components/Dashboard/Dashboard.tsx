@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAllBooksQuery, useOnNewBookSubscription, Book, OnNewBookSubscription, OnNewBookSubscriptionResult } from '../.generated/components';
+import { useAllBooksQuery, useOnNewBookSubscription, Book, OnNewBookSubscription } from '../.generated/components';
 import QueryResultDisplayer from '../QueryResultDisplayer/QueryResultDisplayer';
 import BooksList from './BooksList/BooksList';
 import BookDetails from './BookDetails/BookDetails';
 import './Dashbaord.sass';
-import { QueryResult, SubscriptionResult, OnSubscriptionDataOptions } from '@apollo/react-common';
+import { OnSubscriptionDataOptions } from '@apollo/react-common';
 
 
 const Dashboard: React.FC = () => {
@@ -13,7 +13,7 @@ const Dashboard: React.FC = () => {
     const { data, loading, error } = useAllBooksQuery();
     const [selectedBook, setSelectedBook] = useState<Book>();
 
-    const subscription = useOnNewBookSubscription({ onSubscriptionData: onNewBook });
+    useOnNewBookSubscription({ onSubscriptionData: onNewBook });
 
     function onNewBook({ subscriptionData }: OnSubscriptionDataOptions<OnNewBookSubscription>) {
         console.log(subscriptionData);

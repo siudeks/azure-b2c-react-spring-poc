@@ -20,9 +20,9 @@ import gft.gql.models.Author;
 import gft.gql.models.Book;
 
 @Component
-class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
+public class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
 
-    private final int BOOKS_TO_GENERATE = 100;
+    private final int BOOKS_TO_GENERATE = 10;
 
     private final String BOOK_ISBN_PATTERN = "\\d{3}-\\d{1}-\\d{3}-\\d{5}-\\d{1}";
     private final Set<String> LANGUAGES_OR_FRAMEWORKS;
@@ -78,7 +78,7 @@ class InMemoryMockStorage implements BooksStorage, AuthorsStorage {
         }
     }
 
-    private Book GenerateBookMockData(int bookId) {
+    public Book GenerateBookMockData(int bookId) {
         return new Book(bookId, generateRandomBookName(),
                 String.format("ISBN %s", randomStringGenerator.generateByRegex(BOOK_ISBN_PATTERN)), description,
                 bookId);

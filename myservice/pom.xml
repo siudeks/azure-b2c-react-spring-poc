@@ -45,10 +45,9 @@
         </dependency>
         <!-- to embed GraphiQL tool -->
         <dependency>
-            <groupId>com.graphql-java-kickstart</groupId>
+            <groupId>com.graphql-java</groupId>
             <artifactId>graphiql-spring-boot-starter</artifactId>
-            <version>5.10.0</version>
-            <scope>runtime</scope>
+            <version>5.0.2</version>
         </dependency>
         <!-- to embed Voyager tool -->
         <dependency>
@@ -100,6 +99,11 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.reactivex.rxjava3</groupId>
+            <artifactId>rxjava</artifactId>
+            <version>3.0.0-RC5</version>
         </dependency>
     </dependencies>
     <build>
